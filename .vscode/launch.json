@@ -1,0 +1,76 @@
+{
+  // Pro informace o možných atributech použijte technologii IntelliSense.
+  // Umístěním ukazatele myši zobrazíte popisy existujících atributů.
+  // Další informace najdete tady: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "build bundles",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/rollup/dist/bin/rollup",
+      "cwd": "${workspaceFolder}/test",
+      "args": [
+        "-c"
+      ],
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
+    },
+    {
+      "name": "run prefixes",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/karma/bin/karma",
+      "cwd": "${workspaceFolder}/test",
+      "args": [
+        "start", "karma.prefixes.js"
+      ],
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
+    },
+    {
+      "name": "run handler",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/karma/bin/karma",
+      "cwd": "${workspaceFolder}/test",
+      "args": [
+        "start", "karma.handler.js"
+      ],
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
+    },
+    {
+      "name": "run source-root",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/karma/bin/karma",
+      "cwd": "${workspaceFolder}/test",
+      "args": [
+        "start", "karma.source-root.js"
+      ],
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
+    },
+    {
+      "name": "attach to browser",
+      "type": "chrome",
+      "request": "attach",
+      // "url": "http://localhost:9876/debug.html",
+      "address": "localhost",
+      "port": 9222,
+      "webRoot": "${workspaceRoot}",
+      "pathMapping": {
+        "/": "${workspaceRoot}/test",
+        "/base/": "${workspaceRoot}/test/"
+      },
+      "sourceMapPathOverrides": {
+        "/test/*": "../src/*"
+      }
+    }
+  ]
+}

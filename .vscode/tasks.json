@@ -1,0 +1,40 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+      "label": "debug prefixes",
+      "type": "shell",
+      "command": "karma",
+			"options": {
+				"cwd": "${workspaceRoot}/test"
+			},
+      "args": [
+				"start", "karma.prefixes.js", "--reporters=progress",
+				"--single-run=false", "--auto-watch"
+			],
+      "isBackground": true,
+			"problemMatcher": {
+        "owner": "karma",
+        "fileLocation": "relative",
+        "pattern": [
+					{
+						"regexp": "\\) (\\S.*) FAILED$",
+						"message": 1
+					},
+					{
+						"regexp": "^            at \\S+ \\(([^:]+):(\\d+):(\\d+)\\)$",
+						"file": 1,
+						"line": 2,
+						"column": 3
+					}
+				],
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "\\[karma-server\\]",
+					"endsPattern": "^TOTAL: (?:\\d+ FAILED, )?\\d+ SUCCESS$"
+          // "endsPattern": "LOG MESSAGES FOR"
+        }
+      }
+    }
+	]
+}

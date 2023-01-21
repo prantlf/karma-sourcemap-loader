@@ -22,7 +22,16 @@ module.exports = function (config, testName) {
 
     reporters: ['brief'],
 
-    browsers: ['ChromeHeadless'],
+    browsers: ['ChromeDebugging'],
+
+    customLaunchers: {
+      ChromeDebugging: {
+        base: 'ChromeHeadless',
+        flags: [
+          '--remote-debugging-port=9222', '--use-mock-keychain'
+        ]
+      }
+    },
 
     briefReporter: { renderOnRunCompleteOnly: !!process.env.CI },
 
