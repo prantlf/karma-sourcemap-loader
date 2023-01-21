@@ -1,26 +1,36 @@
 {
-  "name": "karma-sourcemap-loader",
-  "version": "0.3.8",
-  "description": "Karma plugin that locates and loads existing javascript source map files.",
+  "name": "@prantlf/karma-sourcemap-loader",
+  "version": "1.0.0",
+  "description": "Karma plugin that locates and loads source maps, optionally updating source paths.",
+  "author": "Ferdinand Prantl <prantlf@gmail.com> (http://prantl.tk)",
+  "contributors": [
+    {
+      "name": "Gabriele Genta",
+      "email": "gabriele.genta@gmail.com"
+    }
+  ],
+  "license": "MIT",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/prantlf/karma-sourcemap-loader/blob/master/LICENSE"
+    }
+  ],
+  "homepage": "http://github.com/prantlf/karma-sourcemap-loader/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/prantlf/karma-sourcemap-loader.git"
+  },
+  "bugs": {
+    "url": "http://github.com/prantlf/karma-sourcemap-loader/issues"
+  },
   "main": "index.js",
   "files": [
     "index.js"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:demerzel3/karma-sourcemap-loader.git"
+  "engines": {
+    "node": ">=15"
   },
-  "keywords": [
-    "karma-plugin",
-    "karma-preprocessor",
-    "source-maps",
-    "javascript"
-  ],
-  "author": {
-    "name": "Gabriele Genta",
-    "email": "gabriele.genta@gmail.com"
-  },
-  "license": "MIT",
   "scripts": {
     "debug:prefixes": "karma start test/karma.prefixes.js --reporters=progress --single-run=false --auto-watch",
     "debug:handler": "karma start test/karma.handler.js --reporters=progress --single-run=false --auto-watch",
@@ -31,17 +41,41 @@
   "c8": {
     "reporter": []
   },
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      [
+        "@semantic-release/github",
+        {
+          "failComment": false
+        }
+      ],
+      "@semantic-release/git"
+    ]
+  },
   "dependencies": {
-    "graceful-fs": "^4.1.2"
+    "graceful-fs": "4.2.10"
   },
   "devDependencies": {
-    "c8": "^7.12.0",
-    "jasmine-core": "^4.5.0",
-    "karma": "^6.4.1",
-    "karma-brief-reporter": "^0.2.2",
-    "karma-chrome-launcher": "^3.1.1",
-    "karma-jasmine": "^5.1.0",
-    "rollup": "^3.10.1",
-    "rollup-sourcemap-path-transform": "^1.0.3"
-  }
+    "@semantic-release/changelog": "6.0.2",
+    "@semantic-release/git": "10.0.1",
+    "c8": "7.12.0",
+    "jasmine-core": "4.5.0",
+    "karma": "6.4.1",
+    "karma-brief-reporter": "0.2.2",
+    "karma-chrome-launcher": "3.1.1",
+    "karma-jasmine": "5.1.0",
+    "rollup": "3.10.1",
+    "rollup-sourcemap-path-transform": "1.0.3"
+  },
+  "keywords": [
+    "karma-plugin",
+    "karma-preprocessor",
+    "source-maps",
+    "remap",
+    "javascript"
+  ]
 }

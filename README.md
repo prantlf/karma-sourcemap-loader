@@ -1,6 +1,20 @@
-# karma-sourcemap-loader
+# @prantlf/karma-sourcemap-loader
 
-> Preprocessor that locates and loads existing source maps.
+[![Latest version](https://img.shields.io/npm/v/@prantlf/karma-sourcemap-loader)
+ ![Dependency status](https://img.shields.io/librariesio/release/npm/@prantlf/karma-sourcemap-loader)
+](https://www.npmjs.com/package/@prantlf/karma-sourcemap-loader)
+[![Coverage](https://codecov.io/gh/prantlf/karma-sourcemap-loader/branch/master/graph/badge.svg)](https://codecov.io/gh/prantlf/karma-sourcemap-loader)
+
+> [Karma] plugin that locates and loads source maps, optionally updating source paths.
+
+This is a fork of the [original project] with the following improvements:
+
+* Allow remapping or otherwise changing source paths in source maps
+* Allow changing `sourceRoot` in source maps
+* Allow adapting the source map files alone, if served separately by the Karma web server
+* Allow failing the test run in case of invalid and missing source maps
+* Fix handling of raw (URI-encoded) source maps - trim the leading `,` before parsing the content
+* Introduce unit tests for the existing functionality
 
 ## Why
 
@@ -21,24 +35,16 @@ Inline source maps are located by searching "sourceMappingURL=" inside the javas
 file, both plain text and base64-encoded maps are supported.
 
 External source maps are located by appending ".map" to the javascript file name.
-So if for example you have Hello.js, the preprocessor will try to load source map from
-Hello.js.map.
+So if for example you have `Hello.js`, the preprocessor will try to load source map from
+`Hello.js.map`.
 
 ## Installation
 
-Just add `karma-sourcemap-loader` as a devDependency in your `package.json`.
-```json
-{
-  "devDependencies": {
-    "karma-sourcemap-loader": "~0.3"
-  }
-}
-```
+This module can be installed in your project using [NPM], [PNPM] or [Yarn]. Make sure, that you use [Node.js] version 15.0 or newer.
 
-Or issue the following command:
-```bash
-npm install karma-sourcemap-loader --save-dev
-```
+    npm i -D @prantlf/karma-sourcemap-loader
+    pnpm i -D @prantlf/karma-sourcemap-loader
+    yarn add -D @prantlf/karma-sourcemap-loader
 
 ## Configuration
 
@@ -48,23 +54,25 @@ The code below shows a sample configuration of the preprocessor.
 // karma.conf.js
 module.exports = function(config) {
   config.set({
-    plugins: ['karma-sourcemap-loader'],
+    plugins: ['@prantlf/karma-sourcemap-loader'],
     preprocessors: {
-      '**/*.js': ['sourcemap']
+      '**/*.js': ['sourcemap'],
+      '**/*.map': ['sourcemap']
     }
   });
 };
 ```
 
-The code below shows a configuration of the preprocessor with remapping of source file paths in source maps using path prefixes. The object `remapPrefixes` contains path prefixes as keys, which if they are detected in a source path, will be replaced by the key value. After the first detected prefix gets replaced, other prefixes will be ignored..
+The code below shows a configuration of the preprocessor with remapping of source file paths in source maps using path prefixes. The object `remapPrefixes` contains path prefixes as keys, which if they are detected in a source path, will be replaced by the key value. After the first detected prefix gets replaced, other prefixes will be ignored.
 
 ```js
 // karma.conf.js
 module.exports = function(config) {
   config.set({
-    plugins: ['karma-sourcemap-loader'],
+    plugins: ['@prantlf/karma-sourcemap-loader'],
     preprocessors: {
-      '**/*.js': ['sourcemap']
+      '**/*.js': ['sourcemap'],
+      '**/*.map': ['sourcemap']
     },
     sourceMapLoader: {
       remapPrefixes: {
@@ -82,9 +90,10 @@ The code below shows a configuration of the preprocessor with remapping of sourc
 // karma.conf.js
 module.exports = function(config) {
   config.set({
-    plugins: ['karma-sourcemap-loader'],
+    plugins: ['@prantlf/karma-sourcemap-loader'],
     preprocessors: {
-      '**/*.js': ['sourcemap']
+      '**/*.js': ['sourcemap'],
+      '**/*.map': ['sourcemap']
     },
     sourceMapLoader: {
       remapSource(source) {
@@ -103,9 +112,10 @@ The code below shows a sample configuration of the preprocessor with changing th
 // karma.conf.js
 module.exports = function(config) {
   config.set({
-    plugins: ['karma-sourcemap-loader'],
+    plugins: ['@prantlf/karma-sourcemap-loader'],
     preprocessors: {
-      '**/*.js': ['sourcemap']
+      '**/*.js': ['sourcemap'],
+      '**/*.map': ['sourcemap']
     },
     sourceMapLoader: {
       useSourceRoot: '/sources'
@@ -120,9 +130,10 @@ The code below shows a sample configuration of the preprocessor with changing th
 // karma.conf.js
 module.exports = function(config) {
   config.set({
-    plugins: ['karma-sourcemap-loader'],
+    plugins: ['@prantlf/karma-sourcemap-loader'],
     preprocessors: {
-      '**/*.js': ['sourcemap']
+      '**/*.js': ['sourcemap'],
+      '**/*.map': ['sourcemap']
     },
     sourceMapLoader: {
       useSourceRoot(file) {
@@ -139,9 +150,10 @@ The code below shows a sample configuration of the preprocessor with a strict er
 // karma.conf.js
 module.exports = function(config) {
   config.set({
-    plugins: ['karma-sourcemap-loader'],
+    plugins: ['@prantlf/karma-sourcemap-loader'],
     preprocessors: {
-      '**/*.js': ['sourcemap']
+      '**/*.js': ['sourcemap'],
+      '**/*.map': ['sourcemap']
     },
     sourceMapLoader: {
       strict: true
@@ -149,3 +161,21 @@ module.exports = function(config) {
   });
 };
 ```
+
+## Contributing
+
+In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code.
+
+## License
+
+Copyright (c) 2013-2020 Sergey Todyshev<br>
+Copyright (c) 2023 Ferdinand Prantl
+
+Licensed under the MIT license.
+
+[original project]: https://github.com/demerzel3/karma-sourcemap-loader
+[Node.js]: http://nodejs.org/
+[NPM]: https://www.npmjs.com/
+[PNPM]: https://pnpm.io/
+[Yarn]: https://yarnpkg.com/
+[Karma]: https://karma-runner.github.io/
