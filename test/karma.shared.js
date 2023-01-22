@@ -2,7 +2,7 @@ module.exports = function (_config, testName) {
   return {
     plugins: [
       'karma-jasmine', 'karma-brief-reporter', 'karma-chrome-launcher',
-      require('..')
+      '@prantlf/karma-sourcemap-loader'
     ],
 
     frameworks: ['jasmine'],
