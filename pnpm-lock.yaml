@@ -4,6 +4,7 @@ specifiers:
   '@semantic-release/changelog': 6.0.2
   '@semantic-release/git': 10.0.1
   c8: 7.12.0
+  denolint: 2.0.5
   graceful-fs: 4.2.10
   jasmine-core: 4.5.0
   karma: 6.4.1
@@ -20,6 +21,7 @@ devDependencies:
   '@semantic-release/changelog': 6.0.2
   '@semantic-release/git': 10.0.1
   c8: 7.12.0
+  denolint: 2.0.5
   jasmine-core: 4.5.0
   karma: 6.4.1
   karma-brief-reporter: 0.2.2_karma@6.4.1
@@ -38,6 +40,96 @@ packages:
     resolution: {integrity: sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==}
     engines: {node: '>=0.1.90'}
     dev: true
+
+  /@denolint/denolint-darwin-arm64/2.0.5:
+    resolution: {integrity: sha512-eqNVp4yMdUPBO1CWRnkbnY7EfBeBjxW3YDnLq/KJkZWQSr5mV/Ls2RZQ5N56OMpHczbJJDZq4/wx9KcGMuXZpQ==}
+    engines: {node: '>= 12'}
+    cpu: [arm64]
+    os: [darwin]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@denolint/denolint-darwin-x64/2.0.5:
+    resolution: {integrity: sha512-8l7zQiFhghA4vVE62CDTzXmzzTu4hYXp9NEJXSAE2ACx6EX0jJi9q1/goIR/KMuf2xAYbDkSTouElimsZAYLVw==}
+    engines: {node: '>= 12'}
+    cpu: [x64]
+    os: [darwin]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@denolint/denolint-freebsd-x64/2.0.5:
+    resolution: {integrity: sha512-8oOOsd2SFHvwHEfAcaUzLOIH6p9++X/Om5xkNiJUvgB+lYkR71yeHsIKbwH7TuFEVmXwoZz4dnjqzQPLJ7KPRA==}
+    engines: {node: '>= 12'}
+    cpu: [x64]
+    os: [freebsd]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@denolint/denolint-linux-arm-gnueabihf/2.0.5:
+    resolution: {integrity: sha512-bBM9s30yNMhMjwOqar1752Sg1iRpmTTS5P8ddAa4gjlz72Ff99PwObIW20tAqrJ3zo9LK8Z86yZ9VIcePs6JNQ==}
+    engines: {node: '>= 12'}
+    cpu: [arm]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@denolint/denolint-linux-arm64-gnu/2.0.5:
+    resolution: {integrity: sha512-z6bzbs2ogFs9+ydbGaXjnOK8vy+UP3MPjh5byTY3txrm9K1OY6Apdqyd2L/dG7u6cwzoowDevHjrgO+A/vQOFA==}
+    engines: {node: '>= 12'}
+    cpu: [arm64]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@denolint/denolint-linux-x64-gnu/2.0.5:
+    resolution: {integrity: sha512-QYfL+ss0hbBXOkXuZro24+om0aPZo0DFS6OilNdExB3WZbTrfsfbkgw71cH+9btoo07fvl/+cpKmT3gIC9xA1Q==}
+    engines: {node: '>= 12'}
+    cpu: [x64]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@denolint/denolint-linux-x64-musl/2.0.5:
+    resolution: {integrity: sha512-ZANjYnUXycyzPKdieYhSOBP+rYknBR4RULRSJdMWGfMHDhiQsNEE0GpiPdR28SQPDVJfbNjk2saqblc0BFPvrQ==}
+    engines: {node: '>= 12'}
+    cpu: [x64]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@denolint/denolint-win32-arm64-msvc/2.0.5:
+    resolution: {integrity: sha512-A7nk9RgJRqzqyD0cX+n+dvDKEYi//bx30pLhUsNmDcGueJQiOGJSRa7Bt3KVLRJRh+NAXRiiubgDBLplTi28jw==}
+    engines: {node: '>= 12'}
+    cpu: [arm64]
+    os: [win32]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@denolint/denolint-win32-ia32-msvc/2.0.5:
+    resolution: {integrity: sha512-VHi2w7HerJP3OSaCoLuBs4+uTDN8W0Jj8c463V919kAxtnsuIcJaRstHn3uqJw9zzkDaHpjWYkLD6DwPCUgxpQ==}
+    engines: {node: '>= 12'}
+    cpu: [ia32]
+    os: [win32]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@denolint/denolint-win32-x64-msvc/2.0.5:
+    resolution: {integrity: sha512-X+1/pKTWp7gcg5bzuOBe6QfE73lO4Ro+bG28N/qYMlJMC0z+a4acG+FK43O+Z9JZGyISwz1rCkAYXTYoOHuW7A==}
+    engines: {node: '>= 12'}
+    cpu: [x64]
+    os: [win32]
+    requiresBuild: true
+    dev: true
+    optional: true
 
   /@istanbuljs/schema/0.1.3:
     resolution: {integrity: sha512-ZXRY4jNvVgSVQ8DL3LTcakaAtXwTVUxE81hslsyD2AtoXW/wVob10HkOJ1X/pAlcI7D+2YoZKg5do8G/w6RYgA==}
@@ -366,6 +458,23 @@ packages:
         optional: true
     dependencies:
       ms: 2.1.2
+    dev: true
+
+  /denolint/2.0.5:
+    resolution: {integrity: sha512-ym+6akCw9NQuoaCTJf00D85Al4WG+NBcGmqKeDV+c9fCReM58kPvaT1VOZZXgPYzZTkgnDL3MJsZk+oPDYydOQ==}
+    engines: {node: '>= 12'}
+    requiresBuild: true
+    optionalDependencies:
+      '@denolint/denolint-darwin-arm64': 2.0.5
+      '@denolint/denolint-darwin-x64': 2.0.5
+      '@denolint/denolint-freebsd-x64': 2.0.5
+      '@denolint/denolint-linux-arm-gnueabihf': 2.0.5
+      '@denolint/denolint-linux-arm64-gnu': 2.0.5
+      '@denolint/denolint-linux-x64-gnu': 2.0.5
+      '@denolint/denolint-linux-x64-musl': 2.0.5
+      '@denolint/denolint-win32-arm64-msvc': 2.0.5
+      '@denolint/denolint-win32-ia32-msvc': 2.0.5
+      '@denolint/denolint-win32-x64-msvc': 2.0.5
     dev: true
 
   /depd/2.0.0:

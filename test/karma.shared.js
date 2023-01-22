@@ -1,4 +1,4 @@
-module.exports = function (config, testName) {
+module.exports = function (_config, testName) {
   return {
     plugins: [
       'karma-jasmine', 'karma-brief-reporter', 'karma-chrome-launcher',
@@ -35,7 +35,7 @@ module.exports = function (config, testName) {
 
     briefReporter: { renderOnRunCompleteOnly: !!process.env.CI },
 
-    // logLevel: config.LOG_DEBUG,
+    // logLevel: _config.LOG_DEBUG,
     autoWatch: false,
     singleRun: true
   };

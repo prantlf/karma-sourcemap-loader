@@ -19,7 +19,10 @@ Initial release of [this fork] of the [original project] with the following impr
 
 * Introduce unit tests for the existing functionality
 
-**BREAKING CHANGE**: The minimum supported version of Node.js is 15.
+**BREAKING CHANGE**: Use `@prantlf/karma-sourcemap-loader` instead of `karma-sourcemap-loader` as the package name to depend on. Other changes should not affect typical projects:
+* The minimum supported version of Node.js is 15. The current LTS version is already 16.
+* The package `graceful-fs` is not used any more. Recent versions of Node.js should be reliable enough on Windows.
+* Source maps are loaded only for files with `sourceMappingURL` by default. (The default value of the option `onlyWithURL` has changed to `true`.) If your JavaScript files lack `sourceMappingURL`, but include external source maps, set the options `onlyWithURL` to `false`.
 
 [this fork]: http://github.com/prantlf/karma-sourcemap-loader
 [original project]: https://github.com/demerzel3/karma-sourcemap-loader

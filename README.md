@@ -13,6 +13,7 @@ This is a fork of the [original project] with the following improvements:
 * Allow changing `sourceRoot` in source maps
 * Allow adapting the source map files alone, if served separately by the Karma web server
 * Allow failing the test run in case of invalid and missing source maps
+* Allow loading the source maps for files without `sourceMapingURL`
 * Fix handling of raw (URI-encoded) source maps - trim the leading `,` before parsing the content
 * Introduce unit tests for the existing functionality
 
@@ -144,7 +145,7 @@ module.exports = function(config) {
 };
 ```
 
-The code below shows a sample configuration of the preprocessor with source map loading only for files with the `sourceMappingURL` set. The default behaviour is trying to load source maps for all JavaScript files, also those without the `sourceMappingURL` set.
+The code below shows a sample configuration of the preprocessor with source map loading also for files without the `sourceMappingURL`. The default behaviour tries loading source maps only for JavaScript files with the `sourceMappingURL` set.
 
 ```js
 // karma.conf.js
@@ -155,7 +156,7 @@ module.exports = function(config) {
       '**/*.js': ['sourcemap']
     },
     sourceMapLoader: {
-      onlyWithURL: true
+      onlyWithURL: false
     }
   });
 };

@@ -1,35 +1,33 @@
-var fs = require('graceful-fs');
-var path = require('path');
+const { access, readFile } = require('fs');
+const { dirname, resolve } = require('path');
 
-var sourcemapUrlRegeExp = /^\/\/#\s*sourceMappingURL=/;
+const sourcemapUrlRegeExp = /^\/\/#\s*sourceMappingURL=/;
+const charsetRegex = /^;charset=([^;]+);/;
 
-var createSourceMapLocatorPreprocessor = function(args, logger, config) {
+const createSourceMapPreprocessor = (_args, logger, config) => {
   /* c8 ignore next */
-  var options = config && config.sourceMapLoader || {};
-  var remapPrefixes = options.remapPrefixes;
-  var remapSource = options.remapSource;
-  var useSourceRoot = options.useSourceRoot;
-  var onlyWithURL = options.onlyWithURL;
-  var strict = options.strict;
-  var needsUpdate = remapPrefixes || remapSource || useSourceRoot;
+  const options = config && config.sourceMapLoader || {};
+  const { remapPrefixes, remapSource, useSourceRoot, onlyWithURL, strict } = options;
+  const needsUpdate = remapPrefixes || remapSource || useSourceRoot;
 
-  var log = logger.create('preprocessor.sourcemap');
-  var charsetRegex = /^;charset=([^;]+);/;
+  const log = logger.create('preprocessor.sourcemap');
 
-  return function(content, file, done) {
+  return (content, file, done) => {
+    const { path, originalPath } = file;
+
+    // Updates source paths according to the configuration
     function remapSources(sources) {
-      var all = sources.length;
-      var remapped = 0;
-      var remappedPrefixes = {};
-      var i, source, remappedSource;
+      const all = sources.length;
+      let remapped = 0;
+      const remappedPrefixes = {};
+      let i, source, remappedSource;
 
       // Replaces source path prefixes using a key:value map
       function handlePrefixes() {
-        var sourcePrefix, targetPrefix, target;
-        for (sourcePrefix in remapPrefixes) {
-          targetPrefix = remapPrefixes[sourcePrefix];
+        for (const sourcePrefix in remapPrefixes) {
+          const targetPrefix = remapPrefixes[sourcePrefix];
           if (source.startsWith(sourcePrefix)) {
-            target = targetPrefix + source.substring(sourcePrefix.length);
+            const target = targetPrefix + source.substring(sourcePrefix.length);
             sources[i] = target;
             ++remapped;
             // Log only one remapping as an example for each prefix to prevent
@@ -41,11 +39,12 @@ var createSourceMapLocatorPreprocessor = function(args, logger, config) {
             return true;
           }
         }
+      /* c8 ignore next */
       }
 
       // Replaces source paths using a custom function
       function handleMapper() {
-        var target = remapSource(source);
+        const target = remapSource(source);
         // Remapping is considered happenned only if the handler returns
         // a non-empty path different from the existing one
         if (target && target !== source) {
@@ -86,11 +85,11 @@ var createSourceMapLocatorPreprocessor = function(args, logger, config) {
       } catch (err) {
         /* c8 ignore next 5 */
         if (strict) {
-          done(new Error('malformed source map for', file.originalPath + '\nError: ' + err.message));
+          done(new Error(`malformed source map for ${originalPath}\nError: ${err.message}`));
           // Returning `false` will make the caller abort immediately
           return false;
         }
-        log.warn('malformed source map for', file.originalPath);
+        log.warn('malformed source map for', originalPath);
         log.warn('Error:', err.message);
       }
     }
@@ -111,8 +110,9 @@ var createSourceMapLocatorPreprocessor = function(args, logger, config) {
       }
     }
 
-    function sourceMapData(data){
-      var sourceMap = parseMap(data);
+    // Updates the source map content according to the configuration
+    function sourceMapData(data) {
+      const sourceMap = parseMap(data);
       if (sourceMap) {
         // Perform the remapping only if there is a configuration for it
         if (needsUpdate) {
@@ -126,14 +126,12 @@ var createSourceMapLocatorPreprocessor = function(args, logger, config) {
       done(content);
     }
 
-    function inlineMap(inlineData){
-
-      var charset = 'utf-8';
-      
+    // Processes the inline source map
+    function inlineMap(inlineData) {
+      let charset = 'utf-8';
       if (charsetRegex.test(inlineData)) {
-        var matches = inlineData.match(charsetRegex);
-
-        if (matches.length === 2) {
+        const matches = inlineData.match(charsetRegex);
+        if (matches) {
           charset = matches[1];
           inlineData = inlineData.slice(matches[0].length -1);
         }
@@ -141,54 +139,55 @@ var createSourceMapLocatorPreprocessor = function(args, logger, config) {
 
       if (/^;base64,/.test(inlineData)) {
         // base64-encoded JSON string
-        log.debug('base64-encoded source map for', file.originalPath);
-        var buffer = Buffer.from(inlineData.slice(';base64,'.length), 'base64');
+        log.debug('base64-encoded source map for', originalPath);
+        const buffer = Buffer.from(inlineData.slice(8), 'base64');
         sourceMapData(buffer.toString(charset));
       } else if (inlineData.startsWith(',')) {
         // straight-up URL-encoded JSON string
-        log.debug('raw inline source map for', file.originalPath);
+        log.debug('raw inline source map for', originalPath);
         sourceMapData(decodeURIComponent(inlineData.slice(1)));
       } else {
         /* c8 ignore next 2 */
         if (strict) {
-          done(new Error('invalid source map in ' + file.originalPath));
+          done(new Error(`invalid source map in ${originalPath}`));
         } else {
-          log.warn('invalid source map in', file.originalPath);
+          log.warn('invalid source map in', originalPath);
           done(content)
         }
       }
     }
 
+    // Processes the external source map
     function fileMap(mapPath, optional) {
-      fs.exists(mapPath, function(exists) {
-        if (!exists) {
+      access(mapPath, err => {
+        if (err) {
           if (!optional) {
             /* c8 ignore next 3 */
             if (strict) {
-              done(new Error('missing external source map for ' + file.originalPath));
+              done(new Error(`missing external source map for ${originalPath}`));
               return;
             } else {
-              log.warn('missing external source map for', file.originalPath);
+              log.warn('missing external source map for', originalPath);
             }
           }
           done(content);
           return;
         }
 
-        fs.readFile(mapPath, function(err, data) {
+        readFile(mapPath, (err, data) => {
           /* c8 ignore next 10 */
           if (err) {
             if (strict) {
-              done(new Error('reading external source map failed for ' + file.originalPath + '\n' + err));
+              done(new Error(`reading external source map failed for ${originalPath}\n${err}`));
             } else {
-              log.warn('reading external source map failed for', file.originalPath);
+              log.warn('reading external source map failed for', originalPath);
               log.warn(err);
               done(content);
             }
             return;
           }
 
-          log.debug('external source map exists for', file.originalPath);
+          log.debug('external source map exists for', originalPath);
           sourceMapData(data);
         });
       });
@@ -196,11 +195,10 @@ var createSourceMapLocatorPreprocessor = function(args, logger, config) {
 
     // Remap source paths in a directly served source map
     function convertMap() {
-      var sourceMap;
       // Perform the remapping only if there is a configuration for it
       if (needsUpdate) {
-        log.debug('processing source map', file.originalPath);
-        sourceMap = parseMap(content);
+        log.debug('processing source map', originalPath);
+        const sourceMap = parseMap(content);
         if (sourceMap) {
           updateSourceMap(sourceMap);
           content = JSON.stringify(sourceMap);
@@ -212,39 +210,37 @@ var createSourceMapLocatorPreprocessor = function(args, logger, config) {
       done(content);
     }
 
-    if (file.path.endsWith('.map')) {
-      return convertMap();
-    }
+    // If the preprocessed file is not JavaScript, handle it as an external
+    // source map and have Karma serve the updated content
+    if (path.endsWith('.map')) return convertMap();
 
-    var lines = content.split(/\n/);
-    var lastLine = lines.pop();
-    while (/^\s*$/.test(lastLine)) {
+    const lines = content.split(/\n/);
+    let lastLine;
+    do {
       lastLine = lines.pop();
-    }
+    } while (/^\s*$/.test(lastLine));
 
-    var mapUrl;
-
+    let mapUrl;
     if (sourcemapUrlRegeExp.test(lastLine)) {
       mapUrl = lastLine.replace(sourcemapUrlRegeExp, '');
     }
 
     if (!mapUrl) {
-      if (onlyWithURL) {
+      if (onlyWithURL !== false) {
         done(content);
       } else {
-        fileMap(file.path + ".map", true);
+        fileMap(`${path}.map`, true);
       }
     } else if (/^data:application\/json/.test(mapUrl)) {
       inlineMap(mapUrl.slice('data:application/json'.length));
     } else {
-      fileMap(path.resolve(path.dirname(file.path), mapUrl), false);
+      fileMap(resolve(dirname(path), mapUrl), false);
     }
   };
 };
 
-createSourceMapLocatorPreprocessor.$inject = ['args', 'logger', 'config'];
+createSourceMapPreprocessor.$inject = ['args', 'logger', 'config'];
 
-// PUBLISH DI MODULE
 module.exports = {
-  'preprocessor:sourcemap': ['factory', createSourceMapLocatorPreprocessor]
+  'preprocessor:sourcemap': ['factory', createSourceMapPreprocessor]
 };
