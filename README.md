@@ -60,8 +60,8 @@ module.exports = function(config) {
       '**/*.js': ['sourcemap'],
       '**/*.map': ['sourcemap']
     }
-  });
-};
+  })
+}
 ```
 
 The code below shows a configuration of the preprocessor with remapping of source file paths in source maps using path prefixes. The object `remapPrefixes` contains path prefixes as keys, which if they are detected in a source path, will be replaced by the key value. After the first detected prefix gets replaced, other prefixes will be ignored.
@@ -81,8 +81,8 @@ module.exports = function(config) {
         '/otherdep/': '../node_modules/otherdep/'
       }
     }
-  });
-};
+  })
+}
 ```
 
 The code below shows a configuration of the preprocessor with remapping of source file paths in source maps using a callback. The function `remapSource` receives an original source path and may return a changed source path. If it returns `undefined` or other false-y result, the source path will not be changed.
@@ -99,12 +99,12 @@ module.exports = function(config) {
     sourceMapLoader: {
       remapSource(source) {
         if (source.startsWith('/myproject/')) {
-          return '../src/' + source.substring(11);
+          return '../src/' + source.substring(11)
         }
       }
     }
-  });
-};
+  })
+}
 ```
 
 The code below shows a sample configuration of the preprocessor with changing the `sourceRoot` property to a custom value, which will change the location where the debugger should locate the source files.
@@ -121,8 +121,8 @@ module.exports = function(config) {
     sourceMapLoader: {
       useSourceRoot: '/sources'
     }
-  });
-};
+  })
+}
 ```
 
 The code below shows a sample configuration of the preprocessor with changing the `sourceRoot` property using a custom function to be able to compute the value depending on the path to the bundle. The `file` argument is the Karma file object `{ path, originalPath }` for the bundle.
@@ -138,11 +138,11 @@ module.exports = function(config) {
     },
     sourceMapLoader: {
       useSourceRoot(file) {
-        return '/sources';
+        return '/sources'
       }
     }
-  });
-};
+  })
+}
 ```
 
 The code below shows a sample configuration of the preprocessor with source map loading also for files without the `sourceMappingURL`. The default behaviour tries loading source maps only for JavaScript files with the `sourceMappingURL` set.
@@ -158,8 +158,8 @@ module.exports = function(config) {
     sourceMapLoader: {
       onlyWithURL: false
     }
-  });
-};
+  })
+}
 ```
 
 The code below shows a sample configuration of the preprocessor with a strict error checking. A missing or an invalid source map will cause the test run fail.
@@ -176,8 +176,8 @@ module.exports = function(config) {
     sourceMapLoader: {
       strict: true
     }
-  });
-};
+  })
+}
 ```
 
 ## Contributing

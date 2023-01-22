@@ -1,3 +1,3 @@
 export default function shared() {
-  console.log();
+  console.log()
 }

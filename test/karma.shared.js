@@ -38,5 +38,5 @@ module.exports = function (_config, testName) {
     // logLevel: _config.LOG_DEBUG,
     autoWatch: false,
     singleRun: true
-  };
-};
+  }
+}
