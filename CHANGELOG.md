@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/prantlf/karma-sourcemap-loader/compare/v1.0.0...v1.0.1) (2023-05-05)
+
+
+### Bug Fixes
+
+* Upgrade dependencies ([3026ef2](https://github.com/prantlf/karma-sourcemap-loader/commit/3026ef22ef416eb4689ad4d3de4742665bee9a36))
+
 # 1.0.0 (2023-01-22)
 
 Initial release of [this fork] of the [original project] with the following improvements:
