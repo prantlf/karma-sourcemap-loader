@@ -187,7 +187,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 ## License
 
 Copyright (c) 2013-2020 Sergey Todyshev<br>
-Copyright (c) 2023 Ferdinand Prantl
+Copyright (c) 2023-2026 Ferdinand Prantl
 
 Licensed under the MIT license.
 
