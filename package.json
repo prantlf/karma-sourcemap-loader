@@ -1,6 +1,6 @@
 {
   "name": "@prantlf/karma-sourcemap-loader",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Karma plugin that locates and loads source maps, optionally updating source paths.",
   "author": "Ferdinand Prantl <prantlf@gmail.com> (http://prantl.tk)",
   "contributors": [
