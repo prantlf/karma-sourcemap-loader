@@ -1,4 +1,4 @@
-const { readFile, writeFile } = require('fs/promises')
+const { readFile, writeFile } = require('node:fs/promises')
 const { createPathTransform } = require('rollup-sourcemap-path-transform')
 
 // Replace ../src/ with /test/ in source map sources

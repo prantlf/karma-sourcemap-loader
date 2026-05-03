@@ -1,5 +1,6 @@
-## [1.0.1](https://github.com/prantlf/karma-sourcemap-loader/compare/v1.0.0...v1.0.1) (2023-05-05)
+# Changes
 
+## [1.0.1](https://github.com/prantlf/karma-sourcemap-loader/compare/v1.0.0...v1.0.1) (2023-05-05)
 
 ### Bug Fixes
 

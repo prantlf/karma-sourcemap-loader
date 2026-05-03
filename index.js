@@ -1,12 +1,12 @@
-const { access, readFile } = require('fs')
-const { dirname, resolve } = require('path')
+const { access, readFile } = require('node:fs')
+const { dirname, resolve } = require('node:path')
 
 const sourcemapUrlRegeExp = /^\/\/#\s*sourceMappingURL=/
 const charsetRegex = /^;charset=([^;]+);/
 
 const createSourceMapPreprocessor = (_args, logger, config) => {
   /* c8 ignore next */
-  const options = config && config.sourceMapLoader || {}
+  const options = config?.sourceMapLoader || {}
   const { remapPrefixes, remapSource, useSourceRoot, onlyWithURL, strict } = options
   const needsUpdate = remapPrefixes || remapSource || useSourceRoot
 

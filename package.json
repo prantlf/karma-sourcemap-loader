@@ -36,42 +36,26 @@
     "debug:handler": "karma start test/karma.handler.js --reporters=progress --single-run=false --auto-watch",
     "debug:source-root": "karma start test/karma.source-root.js --reporters=progress --single-run=false --auto-watch",
     "pretest": "cd test && rollup -c",
+    "lint": "biome lint *.js test",
     "test": "c8 karma start test/karma.prefixes.js && c8 --no-clean karma start test/karma.handler.js && c8 --no-clean karma start test/karma.source-root-value.js && c8 --no-clean karma start test/karma.source-root-function.js && c8 report -r text -r lcov && c8 check-coverage --100"
   },
   "c8": {
     "reporter": []
   },
-  "release": {
-    "plugins": [
-      "@semantic-release/commit-analyzer",
-      "@semantic-release/release-notes-generator",
-      "@semantic-release/changelog",
-      "@semantic-release/npm",
-      [
-        "@semantic-release/github",
-        {
-          "failComment": false
-        }
-      ],
-      "@semantic-release/git"
-    ]
-  },
   "dependencies": {
     "graceful-fs": "4.2.11"
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.4.14",
     "@prantlf/karma-sourcemap-loader": "link:",
-    "@semantic-release/changelog": "6.0.3",
-    "@semantic-release/git": "10.0.1",
-    "c8": "7.13.0",
-    "denolint": "2.0.9",
-    "jasmine-core": "4.6.0",
-    "karma": "6.4.2",
-    "karma-brief-reporter": "0.2.2",
+    "c8": "11.0.0",
+    "jasmine-core": "6.2.0",
+    "karma": "6.4.4",
+    "karma-brief-reporter": "0.3.0",
     "karma-chrome-launcher": "3.2.0",
     "karma-jasmine": "5.1.0",
-    "rollup": "3.21.5",
-    "rollup-sourcemap-path-transform": "1.0.3"
+    "rollup": "4.60.2",
+    "rollup-sourcemap-path-transform": "1.2.0"
   },
   "keywords": [
     "karma-plugin",

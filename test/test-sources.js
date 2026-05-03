@@ -16,7 +16,7 @@ describe('remap source prefixes', () => {
   return shared;
 
 })();
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic2hhcmVkLmpzIiwic291cmNlcyI6WyIvdGVzdC9zaGFyZWQuanMiXSwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGRlZmF1bHQgZnVuY3Rpb24gc2hhcmVkKCkge1xuICBjb25zb2xlLmxvZygpXG59XG4iXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7O0VBQWUsU0FBUyxNQUFNLEdBQUc7RUFDakMsRUFBRSxPQUFPLENBQUMsR0FBRyxHQUFFO0VBQ2Y7Ozs7Ozs7OyJ9
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic2hhcmVkLmpzIiwic291cmNlcyI6WyIvdGVzdC9zaGFyZWQuanMiXSwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGRlZmF1bHQgZnVuY3Rpb24gc2hhcmVkKCkge1xuICBjb25zb2xlLmxvZygpXG59XG4iXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7O0VBQWUsU0FBUyxNQUFNLEdBQUc7RUFDakMsRUFBRSxPQUFPLENBQUMsR0FBRztFQUNiOzs7Ozs7OzsifQ==
 `)
   })
 
@@ -32,7 +32,7 @@ describe('remap source prefixes', () => {
   return shared;
 
 })();
-//# sourceMappingURL=data:application/json,%7B%22version%22%3A3%2C%22file%22%3A%22shared.js%22%2C%22sources%22%3A%5B%22%2Ftest%2Fshared.js%22%5D%2C%22sourcesContent%22%3A%5B%22export%20default%20function%20shared()%20%7B%5Cn%20%20console.log()%5Cn%7D%5Cn%22%5D%2C%22names%22%3A%5B%5D%2C%22mappings%22%3A%22%3B%3B%3BEAAe%2CSAAS%2CMAAM%2CGAAG%3BEACjC%2CEAAE%2COAAO%2CCAAC%2CGAAG%2CGAAE%3BEACf%3B%3B%3B%3B%3B%3B%3B%3B%22%7D
+//# sourceMappingURL=data:application/json,%7B%22version%22%3A3%2C%22file%22%3A%22shared.js%22%2C%22sources%22%3A%5B%22%2Ftest%2Fshared.js%22%5D%2C%22sourcesContent%22%3A%5B%22export%20default%20function%20shared()%20%7B%5Cn%20%20console.log()%5Cn%7D%5Cn%22%5D%2C%22names%22%3A%5B%5D%2C%22mappings%22%3A%22%3B%3B%3BEAAe%2CSAAS%2CMAAM%2CGAAG%3BEACjC%2CEAAE%2COAAO%2CCAAC%2CGAAG%3BEACb%3B%3B%3B%3B%3B%3B%3B%3B%22%7D
 `)
   })
 
@@ -48,7 +48,7 @@ describe('remap source prefixes', () => {
   return shared;
 
 })();
-//# sourceMappingURL=data:application/json;%7B%22version%22%3A3%2C%22file%22%3A%22shared.js%22%2C%22sources%22%3A%5B%22%2Ftest%2Fshared.js%22%5D%2C%22sourcesContent%22%3A%5B%22export%20default%20function%20shared()%20%7B%5Cn%20%20console.log()%5Cn%7D%5Cn%22%5D%2C%22names%22%3A%5B%5D%2C%22mappings%22%3A%22%3B%3B%3BEAAe%2CSAAS%2CMAAM%2CGAAG%3BEACjC%2CEAAE%2COAAO%2CCAAC%2CGAAG%2CGAAE%3BEACf%3B%3B%3B%3B%3B%3B%3B%3B%22%7D
+//# sourceMappingURL=data:application/json;%7B%22version%22%3A3%2C%22file%22%3A%22shared.js%22%2C%22sources%22%3A%5B%22%2Ftest%2Fshared.js%22%5D%2C%22sourcesContent%22%3A%5B%22export%20default%20function%20shared()%20%7B%5Cn%20%20console.log()%5Cn%7D%5Cn%22%5D%2C%22names%22%3A%5B%5D%2C%22mappings%22%3A%22%3B%3B%3BEAAe%2CSAAS%2CMAAM%2CGAAG%3BEACjC%2CEAAE%2COAAO%2CCAAC%2CGAAG%3BEACb%3B%3B%3B%3B%3B%3B%3B%3B%22%7D
 `)
   })
 
