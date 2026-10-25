@@ -1,10 +1,12 @@
-const sharedConfig = require('./karma.shared')
+import sharedConfig from './karma.shared.js'
 
-module.exports = function (config) {
-  config.set(Object.assign({}, sharedConfig(config, 'test-source-root'), {
-    sourceMapLoader: {
-      useSourceRoot: '/sources',
-      onlyWithURL: false // Just to complete the code coverage
-    }
-  }))
+export default function (config) {
+  config.set(
+    Object.assign({}, sharedConfig(config, 'test-source-root'), {
+      sourceMapLoader: {
+        useSourceRoot: '/sources',
+        onlyWithURL: false // Just to complete the code coverage
+      }
+    })
+  )
 }

@@ -1,9 +1,11 @@
-const sharedConfig = require('./karma.shared')
+import sharedConfig from './karma.shared.js'
 
-module.exports = function (config) {
-  config.set(Object.assign({}, sharedConfig(config, 'test-sources'), {
-    sourceMapLoader: {
-      remapPrefixes: { '/test/': '../src/' }
-    }
-  }))
+export default function (config) {
+  config.set(
+    Object.assign({}, sharedConfig(config, 'test-sources'), {
+      sourceMapLoader: {
+        remapPrefixes: { '/test/': '../src/' }
+      }
+    })
+  )
 }

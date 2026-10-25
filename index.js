@@ -39,7 +39,7 @@ const createSourceMapPreprocessor = (_args, logger, config) => {
             return true
           }
         }
-      /* c8 ignore next */
+        /* c8 ignore next */
       }
 
       // Replaces source paths using a custom function
@@ -96,8 +96,8 @@ const createSourceMapPreprocessor = (_args, logger, config) => {
 
     // Sets the sourceRoot property to a fixed or computed value
     function setSourceRoot(sourceMap) {
-      sourceMap.sourceRoot = typeof useSourceRoot === 'function' ?
-        useSourceRoot(file) : useSourceRoot
+      sourceMap.sourceRoot =
+        typeof useSourceRoot === 'function' ? useSourceRoot(file) : useSourceRoot
     }
 
     // Performs configured updates of the source map content
@@ -119,7 +119,7 @@ const createSourceMapPreprocessor = (_args, logger, config) => {
           updateSourceMap(sourceMap)
         }
         file.sourceMap = sourceMap
-      /* c8 ignore next 3 */
+        /* c8 ignore next 3 */
       } else if (sourceMap === false) {
         return
       }
@@ -133,7 +133,7 @@ const createSourceMapPreprocessor = (_args, logger, config) => {
         const matches = inlineData.match(charsetRegex)
         if (matches) {
           charset = matches[1]
-          inlineData = inlineData.slice(matches[0].length -1)
+          inlineData = inlineData.slice(matches[0].length - 1)
         }
       }
 
@@ -202,7 +202,7 @@ const createSourceMapPreprocessor = (_args, logger, config) => {
         if (sourceMap) {
           updateSourceMap(sourceMap)
           content = JSON.stringify(sourceMap)
-        /* c8 ignore next 3 */
+          /* c8 ignore next 3 */
         } else if (sourceMap === false) {
           return
         }

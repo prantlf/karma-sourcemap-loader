@@ -1,7 +1,7 @@
 # @prantlf/karma-sourcemap-loader
 
 [![Latest version](https://img.shields.io/npm/v/@prantlf/karma-sourcemap-loader)
- ![Dependency status](https://img.shields.io/librariesio/release/npm/@prantlf/karma-sourcemap-loader)
+![Dependency status](https://img.shields.io/librariesio/release/npm/@prantlf/karma-sourcemap-loader)
 ](https://www.npmjs.com/package/@prantlf/karma-sourcemap-loader)
 [![Coverage](https://codecov.io/gh/prantlf/karma-sourcemap-loader/branch/master/graph/badge.svg)](https://codecov.io/gh/prantlf/karma-sourcemap-loader)
 
@@ -9,13 +9,13 @@
 
 This is a fork of the [original project] with the following improvements:
 
-* Allow remapping or otherwise changing source paths in source maps
-* Allow changing `sourceRoot` in source maps
-* Allow adapting the source map files alone, if served separately by the Karma web server
-* Allow failing the test run in case of invalid and missing source maps
-* Allow loading the source maps for files without `sourceMapingURL`
-* Fix handling of raw (URI-encoded) source maps - trim the leading `,` before parsing the content
-* Introduce unit tests for the existing functionality
+- Allow remapping or otherwise changing source paths in source maps
+- Allow changing `sourceRoot` in source maps
+- Allow adapting the source map files alone, if served separately by the Karma web server
+- Allow failing the test run in case of invalid and missing source maps
+- Allow loading the source maps for files without `sourceMapingURL`
+- Fix handling of raw (URI-encoded) source maps - trim the leading `,` before parsing the content
+- Introduce unit tests for the existing functionality
 
 ## Why
 
@@ -53,7 +53,7 @@ The code below shows a sample configuration of the preprocessor.
 
 ```js
 // karma.conf.js
-module.exports = function(config) {
+export default function (config) {
   config.set({
     plugins: ['@prantlf/karma-sourcemap-loader'],
     preprocessors: {
@@ -68,7 +68,7 @@ The code below shows a configuration of the preprocessor with remapping of sourc
 
 ```js
 // karma.conf.js
-module.exports = function(config) {
+export default function (config) {
   config.set({
     plugins: ['@prantlf/karma-sourcemap-loader'],
     preprocessors: {
@@ -89,7 +89,7 @@ The code below shows a configuration of the preprocessor with remapping of sourc
 
 ```js
 // karma.conf.js
-module.exports = function(config) {
+export default function (config) {
   config.set({
     plugins: ['@prantlf/karma-sourcemap-loader'],
     preprocessors: {
@@ -111,7 +111,7 @@ The code below shows a sample configuration of the preprocessor with changing th
 
 ```js
 // karma.conf.js
-module.exports = function(config) {
+export default function (config) {
   config.set({
     plugins: ['@prantlf/karma-sourcemap-loader'],
     preprocessors: {
@@ -129,7 +129,7 @@ The code below shows a sample configuration of the preprocessor with changing th
 
 ```js
 // karma.conf.js
-module.exports = function(config) {
+export default function (config) {
   config.set({
     plugins: ['@prantlf/karma-sourcemap-loader'],
     preprocessors: {
@@ -149,7 +149,7 @@ The code below shows a sample configuration of the preprocessor with source map 
 
 ```js
 // karma.conf.js
-module.exports = function(config) {
+export default function (config) {
   config.set({
     plugins: ['karma-sourcemap-loader'],
     preprocessors: {
@@ -166,7 +166,7 @@ The code below shows a sample configuration of the preprocessor with a strict er
 
 ```js
 // karma.conf.js
-module.exports = function(config) {
+export default function (config) {
   config.set({
     plugins: ['@prantlf/karma-sourcemap-loader'],
     preprocessors: {

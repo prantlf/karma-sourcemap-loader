@@ -1,2 +1,5 @@
 allowBuilds:
   es5-ext: true
+minimumReleaseAgeExclude:
+  - karma-brief-reporter
+  - rollup-sourcemap-path-transform

@@ -1,7 +1,9 @@
-module.exports = function (_config, testName) {
+export default function (_config, testName) {
   return {
     plugins: [
-      'karma-jasmine', 'karma-brief-reporter', 'karma-chrome-launcher',
+      'karma-jasmine',
+      'karma-brief-reporter',
+      'karma-chrome-launcher',
       '@prantlf/karma-sourcemap-loader'
     ],
 
@@ -27,9 +29,7 @@ module.exports = function (_config, testName) {
     customLaunchers: {
       ChromeDebugging: {
         base: 'ChromeHeadless',
-        flags: [
-          '--remote-debugging-port=9222', '--use-mock-keychain'
-        ]
+        flags: ['--remote-debugging-port=9222', '--use-mock-keychain']
       }
     },
 

@@ -1,13 +1,15 @@
-const sharedConfig = require('./karma.shared')
+import sharedConfig from './karma.shared.js'
 
-module.exports = function (config) {
-  config.set(Object.assign({}, sharedConfig(config, 'test-sources'), {
-    sourceMapLoader: {
-      remapSource(source) {
-        if (source.startsWith('/test/')) {
-          return `../src/${source.substring(6)}`
+export default function (config) {
+  config.set(
+    Object.assign({}, sharedConfig(config, 'test-sources'), {
+      sourceMapLoader: {
+        remapSource(source) {
+          if (source.startsWith('/test/')) {
+            return `../src/${source.substring(6)}`
+          }
         }
       }
-    }
-  }))
+    })
+  )
 }

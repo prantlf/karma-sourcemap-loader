@@ -2,6 +2,18 @@
   "name": "@prantlf/karma-sourcemap-loader",
   "version": "1.1.0",
   "description": "Karma plugin that locates and loads source maps, optionally updating source paths.",
+  "keywords": [
+    "javascript",
+    "karma-plugin",
+    "karma-preprocessor",
+    "remap",
+    "source-maps"
+  ],
+  "homepage": "http://github.com/prantlf/karma-sourcemap-loader/",
+  "bugs": {
+    "url": "http://github.com/prantlf/karma-sourcemap-loader/issues"
+  },
+  "license": "MIT",
   "author": "Ferdinand Prantl <prantlf@gmail.com> (http://prantl.tk)",
   "contributors": [
     {
@@ -9,59 +21,45 @@
       "email": "gabriele.genta@gmail.com"
     }
   ],
-  "license": "MIT",
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/prantlf/karma-sourcemap-loader/blob/master/LICENSE"
-    }
-  ],
-  "homepage": "http://github.com/prantlf/karma-sourcemap-loader/",
   "repository": {
     "type": "git",
     "url": "https://github.com/prantlf/karma-sourcemap-loader.git"
   },
-  "bugs": {
-    "url": "http://github.com/prantlf/karma-sourcemap-loader/issues"
-  },
-  "main": "index.js",
   "files": [
     "index.js"
   ],
-  "engines": {
-    "node": ">=15"
-  },
+  "main": "index.js",
   "scripts": {
     "debug:prefixes": "karma start test/karma.prefixes.js --reporters=progress --single-run=false --auto-watch",
     "debug:handler": "karma start test/karma.handler.js --reporters=progress --single-run=false --auto-watch",
     "debug:source-root": "karma start test/karma.source-root.js --reporters=progress --single-run=false --auto-watch",
     "pretest": "cd test && rollup -c",
-    "lint": "biome lint *.js test",
+    "lint": "oxlint",
     "test": "c8 karma start test/karma.prefixes.js && c8 --no-clean karma start test/karma.handler.js && c8 --no-clean karma start test/karma.source-root-value.js && c8 --no-clean karma start test/karma.source-root-function.js && c8 report -r text -r lcov && c8 check-coverage --100"
+  },
+  "devDependencies": {
+    "@prantlf/karma-sourcemap-loader": "link:",
+    "c8": "12.0.0",
+    "jasmine-core": "6.3.0",
+    "karma": "6.4.4",
+    "karma-brief-reporter": "0.4.0",
+    "karma-chrome-launcher": "3.2.0",
+    "karma-jasmine": "5.1.0",
+    "oxfmt": "^0.74.0",
+    "oxlint": "^1.89.0",
+    "rollup": "4.65.0",
+    "rollup-sourcemap-path-transform": "1.3.0"
   },
   "c8": {
     "reporter": []
   },
-  "dependencies": {
-    "graceful-fs": "4.2.11"
+  "engines": {
+    "node": ">=15"
   },
-  "devDependencies": {
-    "@biomejs/biome": "^2.4.14",
-    "@prantlf/karma-sourcemap-loader": "link:",
-    "c8": "11.0.0",
-    "jasmine-core": "6.2.0",
-    "karma": "6.4.4",
-    "karma-brief-reporter": "0.3.0",
-    "karma-chrome-launcher": "3.2.0",
-    "karma-jasmine": "5.1.0",
-    "rollup": "4.60.2",
-    "rollup-sourcemap-path-transform": "1.2.0"
-  },
-  "keywords": [
-    "karma-plugin",
-    "karma-preprocessor",
-    "source-maps",
-    "remap",
-    "javascript"
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/prantlf/karma-sourcemap-loader/blob/master/LICENSE"
+    }
   ]
 }

@@ -10,12 +10,8 @@
       "request": "launch",
       "program": "${workspaceFolder}/node_modules/rollup/dist/bin/rollup",
       "cwd": "${workspaceFolder}/test",
-      "args": [
-        "-c"
-      ],
-      "skipFiles": [
-        "<node_internals>/**"
-      ]
+      "args": ["-c"],
+      "skipFiles": ["<node_internals>/**"]
     },
     {
       "name": "run prefixes",
@@ -23,12 +19,8 @@
       "request": "launch",
       "program": "${workspaceFolder}/node_modules/karma/bin/karma",
       "cwd": "${workspaceFolder}/test",
-      "args": [
-        "start", "karma.prefixes.js"
-      ],
-      "skipFiles": [
-        "<node_internals>/**"
-      ]
+      "args": ["start", "karma.prefixes.js"],
+      "skipFiles": ["<node_internals>/**"]
     },
     {
       "name": "run handler",
@@ -36,12 +28,8 @@
       "request": "launch",
       "program": "${workspaceFolder}/node_modules/karma/bin/karma",
       "cwd": "${workspaceFolder}/test",
-      "args": [
-        "start", "karma.handler.js"
-      ],
-      "skipFiles": [
-        "<node_internals>/**"
-      ]
+      "args": ["start", "karma.handler.js"],
+      "skipFiles": ["<node_internals>/**"]
     },
     {
       "name": "run source-root",
@@ -49,12 +37,8 @@
       "request": "launch",
       "program": "${workspaceFolder}/node_modules/karma/bin/karma",
       "cwd": "${workspaceFolder}/test",
-      "args": [
-        "start", "karma.source-root.js"
-      ],
-      "skipFiles": [
-        "<node_internals>/**"
-      ]
+      "args": ["start", "karma.source-root.js"],
+      "skipFiles": ["<node_internals>/**"]
     },
     {
       "name": "attach to browser",
